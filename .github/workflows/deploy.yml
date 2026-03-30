@@ -1,0 +1,29 @@
+name: Deploy Car Price Predictor to AWS
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    name: Deploy to Elastic Beanstalk
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Zip application
+        run: zip -r app.zip . -x "*.git*"
+
+      - name: Deploy to Elastic Beanstalk
+        uses: einaregilsson/beanstalk-deploy@v21
+        with:
+          aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          application_name: Car-price-predictor
+          environment_name: Car-price-predictor-env
+          region: ${{ secrets.AWS_REGION }}
+          version_label: "v${{ github.run_number }}"
+          deployment_package: app.zip
