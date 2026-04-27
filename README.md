@@ -8,32 +8,23 @@ https://www.autotrader.ca/a/honda/accord%20sedan/toronto/ontario/5_55980460_on20
 - basic logging with Loguru
 - Containerized with Docker: deploy anywhere!
 
-## Running sequence
+# Car Price Predictor 🚗
 
-1.Build the image locally
+An end-to-end Machine Learning web application that predicts used car prices,
+with a fully automated CI/CD pipeline deploying to AWS Elastic Beanstalk.
 
-`docker build -t carpricing:latest . -f Dockerfile`
+## Live Demo
+Deployed on AWS Elastic Beanstalk via GitHub Actions CI/CD
 
-For m1/m2 Macs to later deploy to Linux server:
+## Features
+- Predicts car price based on brand, year, fuel type, km driven, and transmission
+- REST API built with Flask
+- Automated testing and deployment on every push to main branch
+- Machine Learning model trained on real car dataset
 
-`docker buildx build --platform=linux/arm64 . -t carpricing:latest`
-
-2. Run & test locally
-
-`docker run -p 8080:8080 carpricing:latest`
-
-3. Set up the `gcloud` CLI
-
-4. Change into directory with all the files
-
-5. Deploy to GoogleCloud
-`gcloud app delploy app.yaml`
-
-6. Open the app in browser
-`gcloud app browse`
-
-7. Switch off the app in UI
-
-## GCP -> Dynatrace Integration guide
-
-[Official Dynatrace Guide](https://www.dynatrace.com/support/help/setup-and-configuration/setup-on-cloud-platforms/google-cloud-platform/gcp-integrations/gcp-guide/deploy-k8#tabgroup--logs--in-the-kubernetes-cli)
+## Tech Stack
+- **ML Model:** Scikit-learn (Linear Regression)
+- **Backend:** Python, Flask
+- **CI/CD:** GitHub Actions
+- **Cloud:** AWS Elastic Beanstalk
+- **Version Control:** Git
